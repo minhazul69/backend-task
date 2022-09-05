@@ -49,13 +49,8 @@ app.post("/users", (req, res) => {
 });
 app.delete("/users/:id", (req, res) => {
   const id = req.params.id;
-  const filter = Users.filter((user) => user.id === id);
-  res.send(filter);
-});
-app.delete("/users/:id", (req, res) => {
-  const id = req.params.id;
   const filter = { id: id };
-  const result = Users.delete(filter);
+  const result = Users.filter((user) => user.id !== filter);
   res.send(result);
 });
 app.listen(port, () => {
